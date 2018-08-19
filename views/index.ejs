@@ -6,6 +6,25 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <form method="POST" action="/task/add">
+      <label>Add Task </label>
+      <input type="text" name="addTask" placeholder="Enter a task to add to list">
+      <input type="submit" value="Add">  
+    </form>
+    
+    <form method="POST"  action="/task/delete">
+      <ul>
+        <% tasks.forEach(function(task){ %>
+         <li>
+           <label>
+             <input type="checkbox" name="deleteTasks" class="del" value="<%= task %>">
+              <span><%= task %></span></li>
+           </label>
+        
+        <%});%>
+      </ul>
+      <input type="submit" value="Delete">
+    </form>
+  
   </body>
 </html>
