@@ -2,9 +2,20 @@
 <html>
   <head>
     <title><%= title %></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="https://bootswatch.com/4/darkly/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+          <a class="navbar-brand" href="#">Redis App</a>
+      </nav>
+    <div class="col-3 md-3 sm-3"></div>
+    <div class="container col-6 md-6 sm-6">
     <h1><%= title %></h1>
     <form method="POST" action="/task/add">
       <label>Add Task </label>
@@ -13,42 +24,40 @@
     </form>
     
     <form method="POST"  action="/task/delete">
-      <ul>
         <% tasks.forEach(function(task){ %>
-         <li>
            <label>
              <input type="checkbox" name="deleteTasks" class="del" value="<%= task %>">
-              <span><%= task %></span></li>
-           </label>
+              <span><%= task %></span>
+           </label><br>
         
         <%});%>
-      </ul>
       <input type="submit" value="Delete">
     </form>
     <br>
     <br>
-    <h3>Events</h3>
-    <ul>
-        <% for(property in events ){ %>
-         <li>
-           <label>
-             <%= property %>
-           </label>:
-           <label>
-              <%= events[property] %>
-            </label>
-        <%};%>
-      </ul>
-      <br>
-    <label>Add an event</label>
-    <form method="POST" action="/event/add">
-      <label for="what">What? </label><br>
-      <input type="text" name="what"><br><br>
-      <label for="when">When?</label><br>
-      <input type="date" name="when"><br><br>
-      <label for="when">Where? </label><br>
-      <input type="text" name="where"><br><br>
-      <input type="submit" value="Add">
-    </form>
+    <div class="well">
+      <h3>Events</h3>
+          <% for(property in events ){ %>
+            <label >
+              <%= property %>
+            </label>:
+            <label>
+                <%= events[property] %>
+              </label><br>
+          <%};%>
+        <br>
+    </div>
+      <label>Add an event</label>
+      <form method="POST" action="/event/add">
+        <label for="what">What? </label><br>
+        <input type="text" name="what"><br><br>
+        <label for="when">When?</label><br>
+        <input type="date" name="when"><br><br>
+        <label for="when">Where? </label><br>
+        <input type="text" name="where"><br><br>
+        <input type="submit" value="Add">
+      </form>
+    <div class="col-3 md-3 sm-3"></div>
+  </div>
   </body>
 </html>
