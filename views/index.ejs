@@ -25,6 +25,30 @@
       </ul>
       <input type="submit" value="Delete">
     </form>
-  
+    <br>
+    <br>
+    <h3>Events</h3>
+    <ul>
+        <% for(property in events ){ %>
+         <li>
+           <label>
+             <%= property %>
+           </label>:
+           <label>
+              <%= events[property] %>
+            </label>
+        <%};%>
+      </ul>
+      <br>
+    <label>Add an event</label>
+    <form method="POST" action="/event/add">
+      <label for="what">What? </label><br>
+      <input type="text" name="what"><br><br>
+      <label for="when">When?</label><br>
+      <input type="date" name="when"><br><br>
+      <label for="when">Where? </label><br>
+      <input type="text" name="where"><br><br>
+      <input type="submit" value="Add">
+    </form>
   </body>
 </html>

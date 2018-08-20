@@ -5,8 +5,13 @@ var client=redis.createClient(config);
 client.on('connect',function(){  console.log( 'Redis Db connected..');});
 
 exports.displayTask =function(cb){
-     client.lrange('tasks',0,-1,function(err,reply){
-        cb(reply);
+    var output={};
+     client.lrange('tasks',0,-1,function(err,tasks){
+        output.tasks=tasks;
+            client.hgetall('event',function(err,events){
+                output.events=events;
+                cb(output);
+            });
      });
 };
 
@@ -36,3 +41,14 @@ exports.deleteTasks=function(tasks,cb){
         cb();
     });
 };
+
+exports.createEvent=function(newEvent,cb){
+    client.hmset('event',['what',newEvent.what,'when',newEvent.when,'where',newEvent.where],function(err,reply){
+        if(!err){
+            cb(reply);
+        }else{
+            console.log('Error from Hash', err);
+            cb();
+        }
+    });
+}
