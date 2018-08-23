@@ -1,1 +1,1 @@
-An applicaiton that uses REDIS as database
+An application that uses REDIS as database
