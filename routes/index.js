@@ -5,9 +5,8 @@ var db=require('../database');
 router.get('/', function(req, res, next) {
   db.displayTask(function(output){
     console.log(output);
-    res.render('index', { title: 'Task & Events List' , tasks:output.tasks, events:output.events});
+    res.render('index', { title: 'Task List' , tasks:output.tasks});
   });
- 
 });
 
 module.exports = router;

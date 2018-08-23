@@ -8,11 +8,14 @@ exports.displayTask =function(cb){
     var output={};
      client.lrange('tasks',0,-1,function(err,tasks){
         output.tasks=tasks;
-            client.hgetall('event',function(err,events){
-                output.events=events;
-                cb(output);
-            });
+        cb(output);
      });
+};
+
+exports.displayEvents=function(cb){
+    client.hgetall('event',function(err,events){
+        cb(events);
+    });
 };
 
 exports.addTask=function(task,cb){
